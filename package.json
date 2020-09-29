@@ -9,6 +9,7 @@
     "build:osx": "npx nativefier -n flippy-panda -p osx -i src/favicon.ico --app-version 0.1.0 -f https://tgotwig.github.io/flippy-panda/ bin",
     "build:linux": "npx nativefier -n flippy-panda -p linux -i src/favicon.ico --app-version 0.1.0 https://tgotwig.github.io/flippy-panda/ bin",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e --port 4000",
     "deploy": "ng build --prod && npx firebase-tools deploy"
