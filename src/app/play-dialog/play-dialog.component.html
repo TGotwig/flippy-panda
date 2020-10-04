@@ -19,9 +19,9 @@
     </div>
 
     <mat-dialog-actions align="end" *ngIf="!finished">
-      <button mat-button mat-raised-button color="accent" (click)="nextCard(false)">Didn't know 😖</button>
-      <button mat-button mat-raised-button color="accent" cdkFocusInitial (click)="flip()">Flip 🎴</button>
-      <button mat-button mat-raised-button color="accent" (click)="nextCard(true)">Knew it 😊</button>
+      <button mat-button mat-raised-button color="accent" class="cardActionBtn" (click)="nextCard(false)">Didn't know 😖</button>
+      <button mat-button mat-raised-button color="accent" class="cardActionBtn" cdkFocusInitial (click)="flip()">Flip 🎴</button>
+      <button mat-button mat-raised-button color="accent" class="cardActionBtn" (click)="nextCard(true)">Knew it 😊</button>
     </mat-dialog-actions>
   </div>
 </ng-template>
