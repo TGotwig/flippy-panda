@@ -76,13 +76,8 @@
 
       <ng-container matColumnDef="remove" stickyEnd>
         <th mat-header-cell *matHeaderCellDef></th>
-        <td
-          class="removeCardBtn"
-          mat-cell
-          *matCellDef="let obj"
-          (click)="removeCard(obj)"
-        >
-          <fa-icon [icon]="faTimes"></fa-icon>
+        <td mat-cell *matCellDef="let obj">
+          <fa-icon [icon]="faTimes" class="removeCardBtn" (click)="removeCard(obj)"></fa-icon>
         </td>
       </ng-container>
 
