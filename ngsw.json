@@ -1,0 +1,97 @@
+{
+  "configVersion": 1,
+  "timestamp": 1621365908612,
+  "index": "/flippy-panda/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/flippy-panda/index.html",
+        "/flippy-panda/main-es2015.1d64251cc4ce2f2539d1.js",
+        "/flippy-panda/main-es5.1d64251cc4ce2f2539d1.js",
+        "/flippy-panda/manifest.webmanifest",
+        "/flippy-panda/polyfills-es2015.d74b108abb35193b00e4.js",
+        "/flippy-panda/polyfills-es5.ec3c2f3e3393c4eba77f.js",
+        "/flippy-panda/runtime-es2015.a4dadbc03350107420a4.js",
+        "/flippy-panda/runtime-es5.a4dadbc03350107420a4.js",
+        "/flippy-panda/styles.5906fb483b7b1cec27fb.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/flippy-panda/Nunito-Regular.09b2f37e93bedfaa2976.ttf",
+        "/flippy-panda/Saiyan-Sans.daf700d2a47edf876686.ttf",
+        "/flippy-panda/assets/bamboo.svg",
+        "/flippy-panda/assets/icons/icon-128x128.png",
+        "/flippy-panda/assets/icons/icon-144x144.png",
+        "/flippy-panda/assets/icons/icon-152x152.png",
+        "/flippy-panda/assets/icons/icon-192x192.png",
+        "/flippy-panda/assets/icons/icon-384x384.png",
+        "/flippy-panda/assets/icons/icon-512x512.png",
+        "/flippy-panda/assets/icons/icon-72x72.png",
+        "/flippy-panda/assets/icons/icon-96x96.png",
+        "/flippy-panda/assets/panda.svg",
+        "/flippy-panda/assets/webfonts/Nunito-Regular.ttf",
+        "/flippy-panda/assets/webfonts/Saiyan-Sans.ttf"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/flippy-panda/Nunito-Regular.09b2f37e93bedfaa2976.ttf": "e0c06842837a4dd873581acbbc31290703a38a1c",
+    "/flippy-panda/Saiyan-Sans.daf700d2a47edf876686.ttf": "78c884308db564720698927e9ab13ea4688facf5",
+    "/flippy-panda/assets/bamboo.svg": "abbaf27020097d3b7948af0ec30040068b170deb",
+    "/flippy-panda/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/flippy-panda/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/flippy-panda/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/flippy-panda/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/flippy-panda/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/flippy-panda/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/flippy-panda/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/flippy-panda/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/flippy-panda/assets/panda.svg": "ca3b5006a205f1e4457493b4d0c839be16f5aeb6",
+    "/flippy-panda/assets/webfonts/Nunito-Regular.ttf": "e0c06842837a4dd873581acbbc31290703a38a1c",
+    "/flippy-panda/assets/webfonts/Saiyan-Sans.ttf": "78c884308db564720698927e9ab13ea4688facf5",
+    "/flippy-panda/index.html": "63f8ef6a1cdabb1ebd859dadac2ccecffd167fbb",
+    "/flippy-panda/main-es2015.1d64251cc4ce2f2539d1.js": "06e77a69885093ce674c5716dc85c0351a65a86c",
+    "/flippy-panda/main-es5.1d64251cc4ce2f2539d1.js": "226102784cf883b14ff5bfa488a19313aa5a9edb",
+    "/flippy-panda/manifest.webmanifest": "56301caa47ab8cd5603acaa2f6787a98f15459a3",
+    "/flippy-panda/polyfills-es2015.d74b108abb35193b00e4.js": "65c537467564ee0ba776b629f71ed3413413a7cb",
+    "/flippy-panda/polyfills-es5.ec3c2f3e3393c4eba77f.js": "582964284adadbda014f3a6643607bd3f13f2e6c",
+    "/flippy-panda/runtime-es2015.a4dadbc03350107420a4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/flippy-panda/runtime-es5.a4dadbc03350107420a4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/flippy-panda/styles.5906fb483b7b1cec27fb.css": "dd741ff66943ac218573577fea536e7a50321ef1"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
