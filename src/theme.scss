@@ -1,11 +1,11 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
+@include mat.core();
 
-$app-primary: mat-palette($mat-yellow);
-$app-accent: mat-palette($mat-orange);
+$app-primary: mat.define-palette(mat.$yellow-palette);
+$app-accent: mat.define-palette(mat.$orange-palette);
 
-$app-theme: mat-light-theme($app-primary, $app-accent);
+$app-theme: mat.define-light-theme($app-primary, $app-accent);
 
 @mixin mix-app-theme($app-theme) {
   $primary: map-get($app-theme, primary);
@@ -13,38 +13,38 @@ $app-theme: mat-light-theme($app-primary, $app-accent);
 
   .mat-button-toggle {
     background-color: transparent;
-    color: mat-color($primary, default-contrast);
+    color: mat.get-color-from-palette($primary, default-contrast);
   }
 
   .mat-button-toggle-checked {
-    background-color: mat-color($primary, 'A200');
+    background-color: mat.get-color-from-palette($primary, 'A200');
   }
 
   .mat-card,
   .mat-cell,
   .mat-header-cell,
   .mat-dialog-container {
-    background: mat-color($primary, 400);
+    background: mat.get-color-from-palette($primary, 400);
     color: black;
   }
 
   .mat-toolbar.mat-primary,
   a {
-    background: mat-color($primary);
+    background: mat.get-color-from-palette($primary);
     color: black;
   }
 
   .mat-drawer-content {
-    background-color: mat-color($accent);
+    background-color: mat.get-color-from-palette($accent);
   }
 
   .mat-progress-spinner circle,
   .mat-spinner circle {
-    stroke: mat-color($primary);
+    stroke: mat.get-color-from-palette($primary);
   }
 
   .mat-drawer-inner-container {
-    background-color: mat-color($accent, 400);
+    background-color: mat.get-color-from-palette($accent, 400);
   }
 
   #question {
@@ -57,24 +57,24 @@ $app-theme: mat-light-theme($app-primary, $app-accent);
   }
 
   .mat-focused .mat-form-field-label {
-    color: mat-color($primary, 900) !important;
+    color: mat.get-color-from-palette($primary, 900) !important;
   }
 
   .mat-form-field-ripple {
-    background-color: mat-color($primary, 900) !important;
+    background-color: mat.get-color-from-palette($primary, 900) !important;
   }
 
   .mat-snack-bar-container {
-    background: mat-color($primary);
+    background: mat.get-color-from-palette($primary);
     color: black;
   }
 
   .mat-button {
-    color: mat-color($primary, 900);
+    color: mat.get-color-from-palette($primary, 900);
   }
 
   #bannerCard {
-    background-color: mat-color($primary, 200);
+    background-color: mat.get-color-from-palette($primary, 200);
   }
 
   .fa-times {
