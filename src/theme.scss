@@ -73,6 +73,22 @@ $app-theme: mat.define-light-theme($app-primary, $app-accent);
     color: mat.get-color-from-palette($primary, 900);
   }
 
+  .mat-select-panel {
+    background: mat.get-color-from-palette($accent, 400);
+  }
+
+  .mat-option {
+    background: mat.get-color-from-palette($accent, 400);
+
+    &:hover:not(.mat-option-disabled) {
+      background: mat.get-color-from-palette($accent, hover);
+    }
+
+    &.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled) {
+      background: mat.get-color-from-palette($primary, 'A200');
+    }
+  }
+
   #bannerCard {
     background-color: mat.get-color-from-palette($primary, 200);
   }
