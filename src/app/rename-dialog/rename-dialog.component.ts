@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core'
 import { DataService } from '../#services/data.service'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { DeckService } from '../#services/deck-service/deck.service'
 
 @Component({
   selector: 'app-rename-dialog',
@@ -9,6 +10,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog'
 export class RenameDialogComponent {
   constructor(
     public dataService: DataService,
+    public deckService: DeckService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data
   ) {}
@@ -20,7 +22,7 @@ export class RenameDialogComponent {
       .value
 
     eval(
-      `this.dataService.${this.data.fun.name}(${Object.keys({ newName })[0]})`
+      `this.deckService.${this.data.fun.name}(${Object.keys({ newName })[0]})`
     )
 
     this.dialog.getDialogById('rename-deck-dialog').close([])

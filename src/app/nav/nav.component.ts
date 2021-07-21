@@ -11,6 +11,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import { RealmService } from '../#services/realm-service/realm.service'
+import { DeckService } from '../#services/deck-service/deck.service'
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +22,8 @@ export class NavComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     public dataService: DataService,
-    public realmService: RealmService
+    public realmService: RealmService,
+    public deckService: DeckService
   ) {
     this.data = dataService.data
   }

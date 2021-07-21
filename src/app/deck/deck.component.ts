@@ -9,6 +9,7 @@ import { PlayDialogComponent } from '../play-dialog/play-dialog.component'
 import { RenameDialogComponent } from '../rename-dialog/rename-dialog.component'
 import { faPlayCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { RealmService } from '../#services/realm-service/realm.service'
+import { DeckService } from '../#services/deck-service/deck.service'
 
 @Component({
   selector: 'app-deck',
@@ -28,6 +29,7 @@ export class DeckComponent {
   constructor(
     public dataService: DataService,
     public realmService: RealmService,
+    public deckService: DeckService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {
@@ -68,11 +70,11 @@ export class DeckComponent {
       data: {
         placeholder: 'New deck-name ✍️',
         value: this.dataService.getActiveDeck().name,
-        fun: this.dataService.renameDeck,
+        fun: this.deckService.renameDeck,
       },
     })
 
-  removeDeck = () => this.dataService.removeDeck()
+  removeDeck = () => this.deckService.removeDeck()
 
   removeCard = (card: Card) => this.dataService.removeCard(card.id)
 }

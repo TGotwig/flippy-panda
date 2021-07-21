@@ -19,29 +19,6 @@ describe('DataService', () => {
     }
   ))
 
-  it('🗃 should add a Deck', inject([DataService], (service: DataService) => {
-    const [newDeck, decks]: [Deck, Deck[]] = service.addDeck(dataWithOneRealm)
-    expect(newDeck).toEqual({
-      id: newDeck.id,
-      name: `🗃 deck #1`,
-      cards: [],
-    })
-    expect(decks).toEqual([
-      {
-        id: newDeck.id,
-        name: `🗃 deck #1`,
-        cards: [],
-      },
-    ])
-    expect(service.getData().realms[0].decks).toEqual([
-      {
-        id: newDeck.id,
-        name: `🗃 deck #1`,
-        cards: [],
-      },
-    ])
-  }))
-
   it('🗃 should get a Deck', inject([DataService], (service: DataService) => {
     const deck: Deck = service.getDeck('id', dataWithNoCards)
     expect(deck).toEqual({ id: 'id', name: 'name', cards: [] })
@@ -54,18 +31,6 @@ describe('DataService', () => {
       expect(deck).toEqual({ id: 'id', name: 'name', cards: [] })
     }
   ))
-
-  it('🗃 should remove a Deck', inject([DataService], (service: DataService) => {
-    const leftDecks: Deck[] = service.removeDeck('id', dataWithNoCards)
-    expect(leftDecks.length).toEqual(0)
-  }))
-
-  it('🗃 should rename a Deck', inject([DataService], (service: DataService) => {
-    expect(service.getActiveDeck(dataWithNoCards).name).toEqual('name')
-    expect(service.renameDeck('na', dataWithNoCards).name).toEqual('na')
-
-    expect(service.getActiveDeck().name).toEqual('na')
-  }))
 
   it('🎴 should add a Card', inject([DataService], (service: DataService) => {
     const card: Card = service.addCard('left', 'right', dataWithNoCards)

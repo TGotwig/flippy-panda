@@ -63,138 +63,14 @@ export class DataService {
   // DECKS 🗃
   // ----------
 
-  addDeck(data: Data = this.data): [newDeck: Deck, newDecks: Deck[]] {
-    const actRealm: Realm = this.getActiveRealm(data)
-    const decks: Deck[] = actRealm.decks
-    const id = this.createUniqueId()
-
-    const newDeck = {
-      id: id,
-      name: `🗃 deck #${decks.length + 1}`,
-      cards: [],
-    }
-    const newDecks = [...decks, newDeck].sort((a: Deck, b: Deck) =>
-      a.name > b.name ? 1 : -1
-    )
-
-    this.setData({
-      ...data,
-      realms: data.realms.map((realm) => {
-        if (realm.id === actRealm.id) {
-          return {
-            ...realm,
-            decks: newDecks,
-            activeDeckId: id,
-          }
-        } else return realm
-      }),
-    })
-
-    return [newDeck, newDecks]
-  }
-
-  removeDeck(
-    id: string = this.getActiveDeck(this.getData()).id,
-    data: Data = this.data
-  ): Deck[] {
-    const activeRealm: Realm = this.getActiveRealm(data)
-    const realms: Realm[] = data.realms
-
-    if (!activeRealm.decks.length) return []
-
-    const decks = activeRealm.decks
-    const activeDeckIdx = decks.findIndex((deck) => deck.id === id)
-    const leftDecks = decks.filter((deck) => deck.id !== id)
-
-    this.setData({
-      ...data,
-      realms: realms.map((realm) => {
-        if (realm.id === activeRealm.id) {
-          if (decks.length === 1) {
-            return {
-              ...realm,
-              decks: leftDecks,
-              activeDeckId: undefined,
-            }
-          } else if (decks.length === activeDeckIdx + 1) {
-            return {
-              ...realm,
-              decks: leftDecks,
-              activeDeckId: decks[activeDeckIdx - 1].id,
-            }
-          } else {
-            return {
-              ...realm,
-              decks: leftDecks,
-              activeDeckId: decks[activeDeckIdx + 1].id,
-            }
-          }
-        } else return realm
-      }),
-    })
-    return leftDecks
-  }
-
-  renameDeck(newName: string, data: Data = this.data): Deck {
-    const lastName = this.getActiveDeck(data).name
-    const newDeck: Deck = {
-      ...this.getActiveDeck(data),
-      name: newName,
-    }
-
-    this.setData({
-      ...data,
-      realms: [
-        ...data.realms.filter(
-          (actRealm) => actRealm !== this.getActiveRealm(data)
-        ),
-        {
-          ...this.getActiveRealm(data),
-          decks: [
-            ...this.getActiveRealm(data).decks.filter(
-              (deck) => deck.name !== lastName
-            ),
-            newDeck,
-          ].sort((a: Deck, b: Deck) => (a.name > b.name ? 1 : -1)),
-        },
-      ],
-    })
-
-    return newDeck
-  }
-
-  /**
-   * Removes a realm and returns the other realms.
-   *
-   * @param targetDeckId - The ID from the Deck you want to switch to
-   * @param realms - The ID from the Deck you want to switch to
-   * @returns A new list of realms without the passed realm
-   */
-  changeActiveDeck = (
-    targetDeckId: string,
-    realms: Realm[] = this.data.realms,
-    activeRealm: Realm = this.getActiveRealm()
-  ) => {
-    this.setData({
-      ...this.getData(),
-      realms: realms.map((realm) => {
-        if (realm.id === activeRealm.id) {
-          return { ...realm, activeDeckId: targetDeckId }
-        } else return { ...realm }
-      }),
-    })
-  }
-
-  getDecks(data: Data = this.data) {
-    return this.getActiveRealm(data).decks
-  }
-
+  // todo: move this into deck.service.ts
   getDeck = (id: String, data: Data = this.data): Deck =>
     data.realms
       .map((realm) => realm.decks.filter((deck) => deck.id === id))
       .map((arr) => (arr.length > 0 ? arr[0] : null))
       .filter(Boolean)[0]
 
+  // todo: move this into deck.service.ts
   getActiveDeck = (data: Data = this.getData()): Deck =>
     this.getDeck(this.getActiveRealm(data).activeDeckId, data)
 
