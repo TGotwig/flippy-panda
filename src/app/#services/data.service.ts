@@ -11,7 +11,7 @@ const LS_ITEM_NAME = 'flippyPanda' // name of the localStorage item
   providedIn: 'root',
 })
 export class DataService {
-  data: Data = {
+  private data: Data = {
     realms: [],
     activeRealmId: undefined,
   }

@@ -14,11 +14,11 @@
         <mat-form-field>
           <mat-select
             id="realmSelectionInitiatorBtn"
-            [value]="dataService.data.activeRealmId"
+            [value]="dataService.getData().activeRealmId"
           >
             <mat-option
               class="realmFromPicklistBtn"
-              *ngFor="let realm of dataService.data.realms"
+              *ngFor="let realm of dataService.getData().realms"
               [value]="realm.id"
               (click)="realmService.changeRealm(realm.id)"
             >
@@ -58,7 +58,7 @@
           mat-flat-button
           color="accent"
           (click)="deckService.addDeck()"
-          *ngIf="dataService.data.realms.length > 0"
+          *ngIf="dataService.getData().realms.length > 0"
         >
           🗃 Add a new Deck 👇
         </button>

@@ -24,7 +24,7 @@ export class CardService {
   addCard(
     topSideText: string,
     bottomSideText: string,
-    data: Data = this.dataService.data
+    data: Data = this.dataService.getData()
   ): Card {
     const card = {
       id: this.createUniqueId(),
@@ -58,7 +58,7 @@ export class CardService {
    * @param data - A Data object as template
    * @returns A new list of cards without the removed one
    */
-  removeCard(id: string, data: Data = this.dataService.data): Card[] {
+  removeCard(id: string, data: Data = this.dataService.getData()): Card[] {
     const activeRealm = this.dataService.getActiveRealm(data)
     const activeDeck = this.dataService.getActiveDeck(data)
     const leftCards = activeDeck.cards.filter((e) => e.id !== id)

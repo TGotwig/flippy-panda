@@ -35,7 +35,7 @@ export class DeckComponent {
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {
-    this.data = dataService.data
+    this.data = dataService.getData()
   }
 
   openSnackBar(message: string, action: string) {

@@ -25,7 +25,7 @@ export class NavComponent {
     public realmService: RealmService,
     public deckService: DeckService
   ) {
-    this.data = dataService.data
+    this.data = dataService.getData()
   }
   data: Data
   isHandset$: Observable<boolean> = this.breakpointObserver

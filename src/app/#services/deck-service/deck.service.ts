@@ -87,7 +87,7 @@ export class DeckService {
     return leftDecks
   }
 
-  renameDeck(newName: string, data: Data = this.dataService.data): Deck {
+  renameDeck(newName: string, data: Data = this.dataService.getData()): Deck {
     const lastName = this.dataService.getActiveDeck(data).name
     const newDeck: Deck = {
       ...this.dataService.getActiveDeck(data),
@@ -124,7 +124,7 @@ export class DeckService {
    */
   changeActiveDeck = (
     targetDeckId: string,
-    realms: Realm[] = this.dataService.data.realms,
+    realms: Realm[] = this.dataService.getData().realms,
     activeRealm: Realm = this.dataService.getActiveRealm()
   ) => {
     this.dataService.setData({
