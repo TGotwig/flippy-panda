@@ -3,7 +3,7 @@ import { Guid } from 'guid-typescript'
 import { Data } from '../interfaces'
 import { CardSide } from '../enums'
 
-const LS_ITEM_NAME = 'flippyPanda' // name of the localStorage item
+const LOCAL_STORAGE_KEY = 'flippyPanda' // name of the localStorage item
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class DataService {
 
   setData(data: Data): Data {
     this.data = Object.assign(this.data, data)
-    localStorage.setItem(LS_ITEM_NAME, JSON.stringify(this.getData()))
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.getData()))
     return this.data
   }
 }
