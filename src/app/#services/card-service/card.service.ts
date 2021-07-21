@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Guid } from 'guid-typescript'
-import { Card, Data, } from 'src/app/interfaces'
+import { Card, Data } from 'src/app/interfaces'
 import { DataService } from '../data.service'
 import { DeckService } from '../deck-service/deck.service'
 import { RealmService } from '../realm-service/realm.service'
