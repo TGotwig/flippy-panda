@@ -33,8 +33,9 @@ export class DataService {
 
   getData = () => this.data
 
-  setData(data: Data) {
+  setData(data: Data): Data {
     this.data = Object.assign(this.data, data)
     localStorage.setItem(LS_ITEM_NAME, JSON.stringify(this.getData()))
+    return this.data
   }
 }

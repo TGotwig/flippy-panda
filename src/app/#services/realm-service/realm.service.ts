@@ -10,12 +10,10 @@ export class RealmService {
   constructor(public dataService: DataService) {}
 
   /**
-   * Adds a new realm and returns it, together with a new list of realms.
-   *
    * @param data - A Data object as template
-   * @returns The new realm and a updated list of realms
+   * @returns Updated list of realms with a new one
    */
-  addRealm(data: Data = this.dataService.getData()): [Realm, Realm[]] {
+  addRealm(data: Data = this.dataService.getData()): Realm[] {
     const realmId = this.createUniqueId()
     this.dataService.setData({
       ...data,
@@ -30,7 +28,7 @@ export class RealmService {
       ],
       activeRealmId: realmId,
     })
-    return [this.getRealm(realmId), this.getRealms()]
+    return this.getRealms()
   }
 
   // todo: implement

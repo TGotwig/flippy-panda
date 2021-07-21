@@ -14,17 +14,10 @@ describe('RealmService', () => {
   it('🌌 should add a Realm', inject(
     [RealmService],
     (service: RealmService) => {
-      const [realm, realms]: [Realm, Realm[]] =
-        service.addRealm(dataWithNoRealms)
-      expect(realm).toEqual({
-        id: realm.id,
-        name: `🌌 Realm #1`,
-        decks: [],
-        activeDeckId: undefined,
-      })
+      const realms = service.addRealm(dataWithNoRealms)
       expect(realms).toEqual([
         {
-          id: realm.id,
+          id: realms[0].id,
           name: `🌌 Realm #1`,
           decks: [],
           activeDeckId: undefined,
