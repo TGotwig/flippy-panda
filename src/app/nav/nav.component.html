@@ -20,7 +20,7 @@
               class="realmFromPicklistBtn"
               *ngFor="let realm of dataService.data.realms"
               [value]="realm.id"
-              (click)="dataService.changeRealm(realm.id)"
+              (click)="realmService.changeRealm(realm.id)"
             >
               {{ realm.name }}
             </mat-option>
@@ -38,7 +38,7 @@
             id="addRealmBtn"
             class="realmBtn"
             [icon]="faPlus"
-            (click)="dataService.addRealm()"
+            (click)="realmService.addRealm()"
           ></fa-icon>
           <!-- todo: implement click-event -->
           <!-- <fa-icon
@@ -49,7 +49,7 @@
           <fa-icon
             class="realmBtn"
             [icon]="faTimes"
-            (click)="dataService.removeRealm()"
+            (click)="realmService.removeRealm()"
           ></fa-icon>
         </div>
 

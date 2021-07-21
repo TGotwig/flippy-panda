@@ -2,12 +2,7 @@ import { TestBed, inject } from '@angular/core/testing'
 import { DataService } from './data.service'
 import { Realm, Deck, Card } from '../interfaces'
 
-import {
-  dataWithNoRealms,
-  dataWithOneRealm,
-  dataWithNoCards,
-  dataWithOneCard,
-} from './mock'
+import { dataWithOneRealm, dataWithNoCards, dataWithOneCard } from './mock'
 
 describe('DataService', () => {
   beforeEach(() => {
@@ -15,37 +10,6 @@ describe('DataService', () => {
       providers: [DataService],
     })
   })
-
-  it('🌌 should add a Realm', inject([DataService], (service: DataService) => {
-    const [realm, realms]: [Realm, Realm[]] = service.addRealm(dataWithNoRealms)
-    expect(realm).toEqual({
-      id: realm.id,
-      name: `🌌 Realm #1`,
-      decks: [],
-      activeDeckId: undefined,
-    })
-    expect(realms).toEqual([
-      {
-        id: realm.id,
-        name: `🌌 Realm #1`,
-        decks: [],
-        activeDeckId: undefined,
-      },
-    ])
-  }))
-
-  it('🌌 should remove a Realm', inject(
-    [DataService],
-    (service: DataService) => {
-      const realms: Realm[] = service.removeRealm('id', dataWithOneRealm)
-      expect(realms).toEqual([])
-    }
-  ))
-
-  it('🌌 should get a Realm', inject([DataService], (service: DataService) => {
-    const realm: Realm = service.getRealm('id', dataWithOneRealm)
-    expect(realm.id).toEqual('id')
-  }))
 
   it('🌌 should get active Realm', inject(
     [DataService],

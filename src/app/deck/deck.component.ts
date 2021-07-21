@@ -8,6 +8,7 @@ import { Data, Card } from '../interfaces'
 import { PlayDialogComponent } from '../play-dialog/play-dialog.component'
 import { RenameDialogComponent } from '../rename-dialog/rename-dialog.component'
 import { faPlayCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { RealmService } from '../#services/realm-service/realm.service'
 
 @Component({
   selector: 'app-deck',
@@ -26,6 +27,7 @@ export class DeckComponent {
 
   constructor(
     public dataService: DataService,
+    public realmService: RealmService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {

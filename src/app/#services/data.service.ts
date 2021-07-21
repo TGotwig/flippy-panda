@@ -3,6 +3,7 @@ import { Guid } from 'guid-typescript'
 import { Data, Deck, Card } from '../interfaces'
 import { CardSide } from '../enums'
 import { Realm } from '../interfaces'
+import { RealmService } from './realm-service/realm.service'
 
 const LS_ITEM_NAME = 'flippyPanda' // name of the localStorage item
 
@@ -43,54 +44,7 @@ export class DataService {
   // REALMS 🌌
   // ----------
 
-  /**
-   * Adds a new realm and returns it, together with a new list of realms.
-   *
-   * @param data - A Data object as template
-   * @returns The new realm and a updated list of realms
-   */
-  addRealm(data: Data = this.data): [Realm, Realm[]] {
-    const realmId = this.createUniqueId()
-    this.setData({
-      ...data,
-      realms: [
-        ...data.realms,
-        {
-          id: realmId,
-          name: `🌌 Realm #${data.realms.length + 1}`,
-          decks: [],
-          activeDeckId: undefined,
-        },
-      ],
-      activeRealmId: realmId,
-    })
-    return [this.getRealm(realmId), this.getRealms()]
-  }
-
-  // todo: implement
-  renameRealm() {}
-
-  /**
-   * Removes a realm and returns the other realms.
-   *
-   * @param id - The id of the realm which should be removed
-   * @param data - A Data object as template
-   * @returns A new list of realms without the passed realm
-   */
-  removeRealm(
-    id: String = this.getActiveRealm().id,
-    data: Data = this.data
-  ): Realm[] {
-    const leftRealms = data.realms.filter((realm) => realm.id !== id)
-    const realmsCnt = leftRealms.length
-    this.setData({
-      ...data,
-      realms: leftRealms,
-      activeRealmId: realmsCnt > 0 ? leftRealms[realmsCnt - 1].id : null,
-    })
-    return this.getData().realms
-  }
-
+  // todo: move this into realm.service.ts
   getActiveRealm(data: Data = this.data): Realm {
     const id: string = data.activeRealmId
     if (data.realms.length > 0) {
@@ -104,15 +58,6 @@ export class DataService {
       }
     }
   }
-
-  changeRealm(activeRealmId: string) {
-    this.setData({ ...this.getData(), activeRealmId })
-  }
-
-  getRealm = (id: String, data: Data = this.data): Realm =>
-    data.realms.filter((realm) => realm.id === id)[0]
-
-  getRealms = (): Realm[] => this.data.realms
 
   // ----------
   // DECKS 🗃
