@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Guid } from 'guid-typescript'
+import { CollectionHelper } from 'src/app/helper/collectionHelper'
 import { Data, Deck, Realm } from 'src/app/interfaces'
 import { DataService } from '../data.service'
 import { RealmService } from '../realm-service/realm.service'
@@ -25,9 +26,8 @@ export class DeckService {
       name: `🗃 deck #${decks.length + 1}`,
       cards: [],
     }
-    const newDecks = [...decks, newDeck].sort((a: Deck, b: Deck) =>
-      a.name > b.name ? 1 : -1
-    )
+
+    const newDecks = CollectionHelper.push(decks, newDeck)
 
     this.dataService.setData({
       ...data,
@@ -88,11 +88,13 @@ export class DeckService {
   }
 
   renameDeck(newName: string, data: Data = this.dataService.getData()): Deck {
-    const lastName = this.getActiveDeck(data).name
+    const activeDeck = this.getActiveDeck(data)
     const newDeck: Deck = {
-      ...this.getActiveDeck(data),
+      ...activeDeck,
       name: newName,
     }
+
+    this.removeDeck(activeDeck.id, data)
 
     this.dataService.setData({
       ...data,
@@ -102,12 +104,11 @@ export class DeckService {
         ),
         {
           ...this.realmService.getActiveRealm(data),
-          decks: [
-            ...this.realmService
-              .getActiveRealm(data)
-              .decks.filter((deck) => deck.name !== lastName),
-            newDeck,
-          ].sort((a: Deck, b: Deck) => (a.name > b.name ? 1 : -1)),
+          activeDeckId: newDeck.id,
+          decks: CollectionHelper.push(
+            this.realmService.getActiveRealm(data).decks,
+            newDeck
+          ),
         },
       ],
     })
