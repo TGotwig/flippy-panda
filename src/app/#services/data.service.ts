@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Guid } from 'guid-typescript'
-import { Data, Deck, Card } from '../interfaces'
+import { Data } from '../interfaces'
 import { CardSide } from '../enums'
-import { Realm } from '../interfaces'
-import { RealmService } from './realm-service/realm.service'
 
 const LS_ITEM_NAME = 'flippyPanda' // name of the localStorage item
 
@@ -39,38 +37,4 @@ export class DataService {
     this.data = Object.assign(this.data, data)
     localStorage.setItem(LS_ITEM_NAME, JSON.stringify(this.getData()))
   }
-
-  // ----------
-  // REALMS 🌌
-  // ----------
-
-  // todo: move this into realm.service.ts
-  getActiveRealm(data: Data = this.data): Realm {
-    const id: string = data.activeRealmId
-    if (data.realms.length > 0) {
-      return data.realms.filter((realm) => realm.id === id)[0]
-    } else {
-      return {
-        id: undefined,
-        name: undefined,
-        decks: [],
-        activeDeckId: undefined,
-      }
-    }
-  }
-
-  // ----------
-  // DECKS 🗃
-  // ----------
-
-  // todo: move this into deck.service.ts
-  getDeck = (id: String, data: Data = this.data): Deck =>
-    data.realms
-      .map((realm) => realm.decks.filter((deck) => deck.id === id))
-      .map((arr) => (arr.length > 0 ? arr[0] : null))
-      .filter(Boolean)[0]
-
-  // todo: move this into deck.service.ts
-  getActiveDeck = (data: Data = this.getData()): Deck =>
-    this.getDeck(this.getActiveRealm(data).activeDeckId, data)
 }

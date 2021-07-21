@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing'
 import { DeckService } from './deck.service'
-import { Deck, Realm } from '../../interfaces'
+import { Deck } from '../../interfaces'
 
-import { dataWithNoRealms, dataWithOneRealm, dataWithNoCards } from '../mock'
+import { dataWithOneRealm, dataWithNoCards } from '../mock'
 import { DataService } from '../data.service'
 
 describe('DeckService', () => {
@@ -48,12 +48,25 @@ describe('DeckService', () => {
   ))
 
   it('🗃 should rename a Deck', inject(
-    [DataService, DeckService],
-    (dataService: DataService, deckService: DeckService) => {
-      expect(dataService.getActiveDeck(dataWithNoCards).name).toEqual('name')
+    [DeckService],
+    (deckService: DeckService) => {
+      expect(deckService.getActiveDeck(dataWithNoCards).name).toEqual('name')
       expect(deckService.renameDeck('na', dataWithNoCards).name).toEqual('na')
 
-      expect(dataService.getActiveDeck().name).toEqual('na')
+      expect(deckService.getActiveDeck().name).toEqual('na')
+    }
+  ))
+
+  it('🗃 should get a Deck', inject([DeckService], (service: DeckService) => {
+    const deck: Deck = service.getDeck('id', dataWithNoCards)
+    expect(deck).toEqual({ id: 'id', name: 'name', cards: [] })
+  }))
+
+  it('🗃 should get active Deck', inject(
+    [DeckService],
+    (service: DeckService) => {
+      const deck: Deck = service.getActiveDeck(dataWithNoCards)
+      expect(deck).toEqual({ id: 'id', name: 'name', cards: [] })
     }
   ))
 })

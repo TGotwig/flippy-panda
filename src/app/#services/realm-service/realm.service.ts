@@ -44,7 +44,7 @@ export class RealmService {
    * @returns A new list of realms without the passed realm
    */
   removeRealm(
-    id: String = this.dataService.getActiveRealm().id,
+    id: String = this.getActiveRealm().id,
     data: Data = this.dataService.getData()
   ): Realm[] {
     const leftRealms = data.realms.filter((realm) => realm.id !== id)
@@ -55,6 +55,21 @@ export class RealmService {
       activeRealmId: realmsCnt > 0 ? leftRealms[realmsCnt - 1].id : null,
     })
     return this.dataService.getData().realms
+  }
+
+  // todo: move this into realm.service.ts
+  getActiveRealm(data: Data = this.dataService.getData()): Realm {
+    const id: string = data.activeRealmId
+    if (data.realms.length > 0) {
+      return data.realms.filter((realm) => realm.id === id)[0]
+    } else {
+      return {
+        id: undefined,
+        name: undefined,
+        decks: [],
+        activeDeckId: undefined,
+      }
+    }
   }
 
   changeRealm(activeRealmId: string) {

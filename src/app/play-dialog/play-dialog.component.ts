@@ -4,6 +4,7 @@ import { CardSide } from '../enums'
 import { DataService } from '../#services/data.service'
 import { MatDialogRef } from '@angular/material/dialog'
 import gsap from 'gsap'
+import { DeckService } from '../#services/deck-service/deck.service'
 
 @Component({
   templateUrl: './play-dialog.component.html',
@@ -22,6 +23,7 @@ export class PlayDialogComponent {
 
   constructor(
     public dataService: DataService,
+    public deckService: DeckService,
     private dialogRef: MatDialogRef<PlayDialogComponent>
   ) {
     this.init()
@@ -29,7 +31,7 @@ export class PlayDialogComponent {
 
   init() {
     this.data = JSON.parse(
-      JSON.stringify(this.dataService.getActiveDeck().cards)
+      JSON.stringify(this.deckService.getActiveDeck().cards)
     )
     this.data = this.shuffleArray(this.data)
     this.actCard = this.data.pop()

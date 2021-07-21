@@ -43,7 +43,7 @@ export class DeckComponent {
   }
 
   openPlayDialog = () => {
-    if (this.dataService.getActiveDeck().cards.length > 0) {
+    if (this.deckService.getActiveDeck().cards.length > 0) {
       this.dialog.open(PlayDialogComponent, {
         backdropClass: 'backdrop',
         width: '90%',
@@ -71,7 +71,7 @@ export class DeckComponent {
       id: 'rename-deck-dialog',
       data: {
         placeholder: 'New deck-name ✍️',
-        value: this.dataService.getActiveDeck().name,
+        value: this.deckService.getActiveDeck().name,
         fun: this.deckService.renameDeck,
       },
     })

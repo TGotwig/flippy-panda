@@ -8,8 +8,8 @@
   >
     <mat-nav-list>
       <mat-button-toggle-group
-        *ngIf="dataService.getActiveRealm().decks"
-        [value]="dataService.getActiveRealm().activeDeckId"
+        *ngIf="realmService.getActiveRealm().decks"
+        [value]="realmService.getActiveRealm().activeDeckId"
       >
         <mat-form-field>
           <mat-select
@@ -65,7 +65,7 @@
 
         <mat-button-toggle
           class="deckFromPicklistBtn"
-          *ngFor="let deck of dataService.getActiveRealm().decks"
+          *ngFor="let deck of realmService.getActiveRealm().decks"
           (click)="deckService.changeActiveDeck(deck.id)"
           mat-list-item
           [value]="deck.id"

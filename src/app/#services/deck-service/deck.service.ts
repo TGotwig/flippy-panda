@@ -16,7 +16,7 @@ export class DeckService {
   addDeck(
     data: Data = this.dataService.getData()
   ): [newDeck: Deck, newDecks: Deck[]] {
-    const actRealm: Realm = this.dataService.getActiveRealm(data)
+    const actRealm: Realm = this.realmService.getActiveRealm(data)
     const decks: Deck[] = actRealm.decks
     const id = this.createUniqueId()
 
@@ -46,10 +46,10 @@ export class DeckService {
   }
 
   removeDeck(
-    id: string = this.dataService.getActiveDeck(this.dataService.getData()).id,
+    id: string = this.getActiveDeck(this.dataService.getData()).id,
     data: Data = this.dataService.getData()
   ): Deck[] {
-    const activeRealm: Realm = this.dataService.getActiveRealm(data)
+    const activeRealm: Realm = this.realmService.getActiveRealm(data)
     const realms: Realm[] = data.realms
 
     if (!activeRealm.decks.length) return []
@@ -88,9 +88,9 @@ export class DeckService {
   }
 
   renameDeck(newName: string, data: Data = this.dataService.getData()): Deck {
-    const lastName = this.dataService.getActiveDeck(data).name
+    const lastName = this.getActiveDeck(data).name
     const newDeck: Deck = {
-      ...this.dataService.getActiveDeck(data),
+      ...this.getActiveDeck(data),
       name: newName,
     }
 
@@ -98,12 +98,12 @@ export class DeckService {
       ...data,
       realms: [
         ...data.realms.filter(
-          (actRealm) => actRealm !== this.dataService.getActiveRealm(data)
+          (actRealm) => actRealm !== this.realmService.getActiveRealm(data)
         ),
         {
-          ...this.dataService.getActiveRealm(data),
+          ...this.realmService.getActiveRealm(data),
           decks: [
-            ...this.dataService
+            ...this.realmService
               .getActiveRealm(data)
               .decks.filter((deck) => deck.name !== lastName),
             newDeck,
@@ -125,7 +125,7 @@ export class DeckService {
   changeActiveDeck = (
     targetDeckId: string,
     realms: Realm[] = this.dataService.getData().realms,
-    activeRealm: Realm = this.dataService.getActiveRealm()
+    activeRealm: Realm = this.realmService.getActiveRealm()
   ) => {
     this.dataService.setData({
       ...this.dataService.getData(),
@@ -136,6 +136,17 @@ export class DeckService {
       }),
     })
   }
+
+  // todo: move this into deck.service.ts
+  getDeck = (id: String, data: Data = this.dataService.getData()): Deck =>
+    data.realms
+      .map((realm) => realm.decks.filter((deck) => deck.id === id))
+      .map((arr) => (arr.length > 0 ? arr[0] : null))
+      .filter(Boolean)[0]
+
+  // todo: move this into deck.service.ts
+  getActiveDeck = (data: Data = this.dataService.getData()): Deck =>
+    this.getDeck(this.realmService.getActiveRealm(data).activeDeckId, data)
 
   createUniqueId = (): string => Guid.create().toString()
 }

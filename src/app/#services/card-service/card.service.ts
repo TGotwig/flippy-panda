@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Guid } from 'guid-typescript'
-import { Card, Data, Deck, Realm } from 'src/app/interfaces'
+import { Card, Data, } from 'src/app/interfaces'
 import { DataService } from '../data.service'
+import { DeckService } from '../deck-service/deck.service'
 import { RealmService } from '../realm-service/realm.service'
 
 @Injectable({
@@ -10,7 +11,8 @@ import { RealmService } from '../realm-service/realm.service'
 export class CardService {
   constructor(
     public dataService: DataService,
-    public realmService: RealmService
+    public realmService: RealmService,
+    public deckService: DeckService
   ) {}
 
   /**
@@ -35,11 +37,11 @@ export class CardService {
     this.dataService.setData({
       ...data,
       realms: data.realms.map((realm) => {
-        if (realm.id === this.dataService.getActiveRealm(data).id) {
+        if (realm.id === this.realmService.getActiveRealm(data).id) {
           return {
             ...realm,
             decks: realm.decks.map((deck) => {
-              if (deck.id === this.dataService.getActiveDeck(data).id) {
+              if (deck.id === this.deckService.getActiveDeck(data).id) {
                 return { ...deck, cards: [...deck.cards, card] }
               } else return deck
             }),
@@ -59,8 +61,8 @@ export class CardService {
    * @returns A new list of cards without the removed one
    */
   removeCard(id: string, data: Data = this.dataService.getData()): Card[] {
-    const activeRealm = this.dataService.getActiveRealm(data)
-    const activeDeck = this.dataService.getActiveDeck(data)
+    const activeRealm = this.realmService.getActiveRealm(data)
+    const activeDeck = this.deckService.getActiveDeck(data)
     const leftCards = activeDeck.cards.filter((e) => e.id !== id)
 
     this.dataService.setData({

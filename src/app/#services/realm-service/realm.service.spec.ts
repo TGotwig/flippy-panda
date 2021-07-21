@@ -48,4 +48,12 @@ describe('RealmService', () => {
       expect(realm.id).toEqual('id')
     }
   ))
+
+  it('🌌 should get active Realm', inject(
+    [RealmService],
+    (service: RealmService) => {
+      const realm: Realm = service.getActiveRealm(dataWithOneRealm)
+      expect(realm.id).toEqual('id')
+    }
+  ))
 })
