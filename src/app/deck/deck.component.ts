@@ -10,6 +10,7 @@ import { RenameDialogComponent } from '../rename-dialog/rename-dialog.component'
 import { faPlayCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { RealmService } from '../#services/realm-service/realm.service'
 import { DeckService } from '../#services/deck-service/deck.service'
+import { CardService } from '../#services/card-service/card.service'
 
 @Component({
   selector: 'app-deck',
@@ -30,6 +31,7 @@ export class DeckComponent {
     public dataService: DataService,
     public realmService: RealmService,
     public deckService: DeckService,
+    public cardService: CardService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {
@@ -57,7 +59,7 @@ export class DeckComponent {
     const leftText: string = textareas[0].value
     const rightText: string = textareas[1].value
 
-    this.dataService.addCard(leftText, rightText)
+    this.cardService.addCard(leftText, rightText)
     if (this.table) this.table.renderRows()
     textareas.forEach((e) => (e.value = ''))
     this.topSideInput.focus()
@@ -76,5 +78,5 @@ export class DeckComponent {
 
   removeDeck = () => this.deckService.removeDeck()
 
-  removeCard = (card: Card) => this.dataService.removeCard(card.id)
+  removeCard = (card: Card) => this.cardService.removeCard(card.id)
 }
