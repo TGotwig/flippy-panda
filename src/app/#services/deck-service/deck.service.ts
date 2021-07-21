@@ -138,14 +138,12 @@ export class DeckService {
     })
   }
 
-  // todo: move this into deck.service.ts
   getDeck = (id: String, data: Data = this.dataService.getData()): Deck =>
     data.realms
       .map((realm) => realm.decks.filter((deck) => deck.id === id))
       .map((arr) => (arr.length > 0 ? arr[0] : null))
       .filter(Boolean)[0]
 
-  // todo: move this into deck.service.ts
   getActiveDeck = (data: Data = this.dataService.getData()): Deck =>
     this.getDeck(this.realmService.getActiveRealm(data).activeDeckId, data)
 

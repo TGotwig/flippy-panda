@@ -55,7 +55,6 @@ export class RealmService {
     return this.dataService.getData().realms
   }
 
-  // todo: move this into realm.service.ts
   getActiveRealm(data: Data = this.dataService.getData()): Realm {
     const id: string = data.activeRealmId
     if (data.realms.length > 0) {
